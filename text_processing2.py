@@ -30,28 +30,30 @@ def digits_to_words(input_string):
     """
     digit_string = ''
     digits_only_list = [_ for _ in input_string if _.isdigit()]
+    if not digits_only_list:
+        return ''
     for i in digits_only_list:
         if i == '0':
-            digit_string += 'zero'
+            digit_string += 'zero '
         elif i == '1':
-            digit_string += 'one'
+            digit_string += 'one '
         elif i == '2':
-            digit_string += 'two'
+            digit_string += 'two '
         elif i == '3':
-            digit_string += 'three'
+            digit_string += 'three '
         elif i == '4':
-            digit_string += 'four'
+            digit_string += 'four '
         elif i == '5':
-            digit_string += 'five'
+            digit_string += 'five '
         elif i == '6':
-            digit_string += 'six'
+            digit_string += 'six '
         elif i == '7':
-            digit_string += 'seven'
+            digit_string += 'seven '
         elif i == '8':
-            digit_string += 'eight'
+            digit_string += 'eight '
         else:
-            digit_string += 'nine'
-    return digit_string
+            digit_string += 'nine '
+    return digit_string[:-1]
 
 
 """
