@@ -28,8 +28,32 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
-    return digit_string
+    digit_string = ''
+    digits_only_list = [_ for _ in input_string if _.isdigit()]
+    if not digits_only_list:
+        return ''
+    for i in digits_only_list:
+        if i == '0':
+            digit_string += 'zero '
+        elif i == '1':
+            digit_string += 'one '
+        elif i == '2':
+            digit_string += 'two '
+        elif i == '3':
+            digit_string += 'three '
+        elif i == '4':
+            digit_string += 'four '
+        elif i == '5':
+            digit_string += 'five '
+        elif i == '6':
+            digit_string += 'six '
+        elif i == '7':
+            digit_string += 'seven '
+        elif i == '8':
+            digit_string += 'eight '
+        else:
+            digit_string += 'nine '
+    return digit_string[:-1]
 
 
 """
@@ -39,6 +63,7 @@ def digits_to_words(input_string):
 이 두번째의 경우에는 첫번째 단어는 소문자로, 그 후에 오는 단어들의 첫번째 글자들은 대문자로 쓰입니다 (ex. camelCaseVariable). 
 """
 
+from collections import deque
 
 def to_camel_case(underscore_str):
     """
@@ -64,5 +89,15 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    # 예외 처리1
+    if '_' not in underscore_str:
+        return underscore_str
+    
+    words_lst = [_ for _ in underscore_str.split('_') if _.isalnum()]
+
+    if not words_lst:
+        return ''
+    camelcase_str = words_lst.pop(0).lower()
+    for word in words_lst:
+        camelcase_str += word.lower().title()
     return camelcase_str
