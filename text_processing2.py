@@ -87,10 +87,19 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    words_lst = deque(underscore_str.split('_'))
-    while words_lst[0].isalnum():
-        words_lst.popleft()
-    camelcase_str = words_lst.popleft()
+    # 예외 처리1
+    if '_' not in underscore_str:
+        return underscore_str
+    
+    words_lst = [_ for _ in underscore_str.split('_') if _.isalnum()]
+    
+    # 예외 처리2
+    if not words_lst:
+        return underscore_str
+    
+    camelcase_str = words_lst.pop(0).lower()
     for word in words_lst:
         camelcase_str += word.lower().title()
     return camelcase_str
+
+print(to_camel_case('abc_def_ghi'))
