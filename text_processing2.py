@@ -88,6 +88,8 @@ def to_camel_case(underscore_str):
             "alreadyCamel"
     """
     words_lst = deque(underscore_str.split('_'))
+    while words_lst[0].isalnum():
+        words_lst.popleft()
     camelcase_str = words_lst.popleft()
     for word in words_lst:
         camelcase_str += word.lower().title()
